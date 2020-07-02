@@ -1,14 +1,28 @@
 package concurrency;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class ArrayLengthTest {
+class ArrayTests {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	void test() {
+		Main arrayLengthTest = new Main();
+		int[] arrTest = new int[200000000];
+		assertEquals(arrTest.length, arrayLengthTest.arr.length);
 	}
-
+	
+	@Test
+	void test2() {
+		Main arrayNullTest = new Main();
+		assertNotNull(arrayNullTest.arr);
+	}
+	
+	@Test
+	void test3() {
+		Main threadTest = new Main();
+		int threads = 8;
+		assertEquals(Runtime.getRuntime().availableProcessors(), threads);
+	}
 }
