@@ -22,7 +22,7 @@ class ArrayTests {
 	@Test
 	void test3() {
 		Main threadTest = new Main();
-		int threads = 8;
-		assertEquals(Runtime.getRuntime().availableProcessors(), threads);
+		int testThreads = 8;
+		assertEquals(threadTest.threads, testThreads);
 	}
 }
