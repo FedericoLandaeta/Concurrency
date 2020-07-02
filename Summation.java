@@ -1,5 +1,6 @@
 package concurrency;
 
+//class that contains the methods for the two different summation techniques
 class Summation extends Thread {
 	int s;
 	
@@ -7,12 +8,11 @@ class Summation extends Thread {
 	}
 	
 	public int getSum()
-
 	{
-
 	return s;
-
 	}
+	
+	//method for performing the sum of the array
 	public static int sum(int[] arr)
 	{
 		int sum = 0;
@@ -22,19 +22,20 @@ class Summation extends Thread {
 		return sum;
 	}
 	
+	//method for performing the parallel sum of the array
 	public static int parallelSum(int[] arr, int threads)
 	{
 		int length = (int) Math.ceil(1.0 * arr.length / threads);
 		Summation[] summation = new Summation[threads];
-		Thread[] thread = new Thread[threads];
+		//Thread[] thread = new Thread[threads];
 		for (int i=0; i <threads; i++) {
-			summation[i] = new Summation(arr, i*length, Math.min((i+1)*length, arr.length));
-			thread[i] = new Thread(summation[i]);
-			thread[i].start();
+			summation[i] = new Summation(arr, i*length, (i+1)*length);
+			//thread[i] = new Thread(summation[i]);
+			summation[i].start();
 		}
 		try {
-			for (Thread t : thread) {
-				t.join();
+			for (Summation sum : summation) {
+				sum.join();
 			}
 		}catch (InterruptedException ie) {
 		}
